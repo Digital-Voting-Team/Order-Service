@@ -9,7 +9,7 @@ var (
 	queryCreateTable = `create table if not exists orders
 	(
 	    order_id       integer generated always as identity
-	        constraint "ORDERS_pk"
+	        constraint orders_pk
 	            primary key,
 	    customer_id    integer          not null,
 	    staff_id       integer          not null,
@@ -17,9 +17,10 @@ var (
 	    payment_method integer          not null,
 	    is_take_away   boolean          not null,
 	    status_id      integer          not null
-	        constraint "ORDERS_statuses_null_fk"
+	        constraint orders_statuses_status_id_fk
 	            references statuses,
-	    cafe_id        integer          not null
+	    cafe_id        integer          not null,
+	    order_date     timestamp with time zone not null
 	);
 	
 	alter table orders
@@ -27,13 +28,13 @@ var (
 
 	queryDeleteTable = `drop table orders;`
 
-	queryInsert = `insert into orders(customer_id, staff_id, total_price, payment_method, is_take_away, status_id, cafe_id)
-	values ($1, $2, $3, $4, $5, $6, $7) returning order_id;`
+	queryInsert = `insert into orders(customer_id, staff_id, total_price, payment_method, is_take_away, status_id, cafe_id, order_date)
+	values ($1, $2, $3, $4, $5, $6, $7, $8) returning order_id;`
 
 	querySelect = `select * from orders;`
 
 	queryUpdate = `update orders
-	set customer_id=$2, staff_id=$3, total_price=$4, payment_method=$5, is_take_away=$6, status_id=$7, cafe_id=$8
+	set customer_id=$2, staff_id=$3, total_price=$4, payment_method=$5, is_take_away=$6, status_id=$7, cafe_id=$8, order_date=$9
 	where order_id=$1;`
 
 	queryDelete = `delete from orders
@@ -52,7 +53,7 @@ func NewRepository(db *sqlx.DB) *Repository {
 
 func (repo *Repository) Insert(order *Order) (int, error) {
 	rows, err := repo.db.Queryx(queryInsert, order.CustomerId, order.StaffId, order.TotalPrice, order.PaymentMethod,
-		order.IsTakeAway, order.StatusId, order.CafeId)
+		order.IsTakeAway, order.StatusId, order.CafeId, order.OrderDate)
 	defer rows.Close()
 	id := -1
 	if err != nil {
@@ -100,7 +101,7 @@ func (repo *Repository) Delete(id int) error {
 
 func (repo *Repository) Update(id int, order *Order) error {
 	_, err := repo.db.Queryx(queryUpdate, id, order.CustomerId, order.StaffId, order.TotalPrice, order.PaymentMethod,
-		order.IsTakeAway, order.StatusId, order.CafeId)
+		order.IsTakeAway, order.StatusId, order.CafeId, order.OrderDate)
 	return err
 }
 

@@ -9,12 +9,12 @@ var (
 	queryCreateTable = `create table if not exists order_items
 	(
 	    order_item_id integer generated always as identity
-	        constraint "ORDER_ITEM_pk"
+	        constraint order_items_pk
 	            primary key,
 	    meal_id       integer not null,
 	    quantity      integer not null,
 	    order_id      integer not null
-	        constraint "ORDER_ITEM_orders_null_fk"
+	        constraint order_items_orders_order_id_fk
 	            references orders
 	);
 	

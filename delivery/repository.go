@@ -8,15 +8,18 @@ import (
 var (
 	queryCreateTable = `create table if not exists deliveries
 	(
-	    delivery_id    integer          not null
-	        constraint "DELIVERY_pk"
+	    delivery_id    integer generated always as identity
+	        constraint deliveries_pk
 	            primary key,
 	    order_id       integer          not null
-	        constraint "DELIVERY_orders_null_fk"
+	        constraint deliveries_orders_order_id_fk
 	            references orders,
-	    address_id     integer          not null,
+	    address_id     integer          not null
+	        constraint deliveries_addresses_address_id_fk
+            	references addresses,
 	    staff_id       integer          not null,
-	    delivery_price double precision not null
+	    delivery_price double precision not null,
+	    delivery_date  timestamp with time zone not null
 	);
 	
 	alter table deliveries
@@ -24,13 +27,13 @@ var (
 
 	queryDeleteTable = `drop table deliveries;`
 
-	queryInsert = `insert into deliveries(order_id, address_id, staff_id, delivery_price)
-	values ($1) returning delivery_id;`
+	queryInsert = `insert into deliveries(order_id, address_id, staff_id, delivery_price, delivery_date)
+	values ($1, $2, $3, $4, $5) returning delivery_id;`
 
 	querySelect = `select * from deliveries;`
 
 	queryUpdate = `update deliveries
-	set order_id=$2, address_id=$3, staff_id=$4, delivery_price=$5
+	set order_id=$2, address_id=$3, staff_id=$4, delivery_price=$5, delivery_date=$6
 	where delivery_id=$1;`
 
 	queryDelete = `delete from deliveries
@@ -49,7 +52,7 @@ func NewRepository(db *sqlx.DB) *Repository {
 
 func (repo *Repository) Insert(delivery *Delivery) (int, error) {
 	rows, err := repo.db.Queryx(queryInsert, delivery.OrderId, delivery.AddressId, delivery.StaffId,
-		delivery.DeliveryPrice)
+		delivery.DeliveryPrice, delivery.DeliveryDate)
 	defer rows.Close()
 	id := -1
 	if err != nil {
@@ -97,7 +100,7 @@ func (repo *Repository) Delete(id int) error {
 
 func (repo *Repository) Update(id int, delivery *Delivery) error {
 	_, err := repo.db.Queryx(queryUpdate, id, delivery.OrderId, delivery.AddressId, delivery.StaffId,
-		delivery.DeliveryPrice)
+		delivery.DeliveryPrice, delivery.DeliveryDate)
 	return err
 }
 

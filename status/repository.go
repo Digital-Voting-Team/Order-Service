@@ -3,13 +3,14 @@ package status
 import (
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
+	"strconv"
 )
 
 var (
 	queryCreateTable = `create table if not exists statuses
 	(
 	    status_id   integer generated always as identity
-	        constraint "STATUSES_pk"
+	        constraint statuses_pk
 	            primary key,
 	    status_name varchar not null
 	);
@@ -32,6 +33,8 @@ var (
 	where status_id=$1;`
 
 	queryCleanDb = `delete from statuses;`
+
+	queryResetIdCounter = `alter sequence statuses_status_id_seq restart `
 )
 
 type Repository struct {
@@ -40,6 +43,11 @@ type Repository struct {
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{db: db}
+}
+
+func (repo *Repository) ResetIdCounter(id int) error {
+	_, err := repo.db.Exec(queryResetIdCounter + "with " + strconv.Itoa(id))
+	return err
 }
 
 func (repo *Repository) Insert(status *Status) (int, error) {
