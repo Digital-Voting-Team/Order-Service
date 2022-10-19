@@ -1,0 +1,35 @@
+allOf:
+  - $ref: '#/components/schemas/OrderItemKey'
+  - type: object
+    required:
+      - attributes
+      - relationships
+    properties:
+      relationships:
+        type: object
+        required:
+          - order
+          - meal
+        properties:
+          order:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/components/schemas/OrderKey'
+          meal:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/components/schemas/MealKey'
+      attributes:
+        type: object
+        required:
+          - quantity
+        properties:
+          quantity:
+            type: string
+            format: int64

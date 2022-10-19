@@ -2,7 +2,7 @@ package address
 
 type Address struct {
 	Id          int    `db:"address_id"`
-	BuildingNum int    `db:"building_num"`
+	BuildingNum int    `db:"building_number"`
 	Street      string `db:"street"`
 	City        string `db:"city"`
 	District    string `db:"district"`

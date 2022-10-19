@@ -1,0 +1,89 @@
+post:
+  tags:
+    - OrderItem
+  summary: Create Order Item
+  operationId: createOrderItem
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/components/schemas/OrderItem'
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/OrderItem'
+    '401':
+      description: Order item creation is not allowed
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to process request
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+
+
+get:
+  tags:
+    - OrderItem
+  summary: Get Order Item list
+  operationId: getOrderItemList
+  parameters:
+    - $ref: '#/components/parameters/pageNumberParam'
+    - $ref: '#/components/parameters/pageLimitParam'
+    - $ref: '#/components/parameters/sortingParam'
+    - name: 'filter[meal_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: int64
+    - name: 'filter[quantity]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: int64
+    - name: 'filter[order_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: int64
+    - name: 'include'
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - orders
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderItem'
+              included:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'

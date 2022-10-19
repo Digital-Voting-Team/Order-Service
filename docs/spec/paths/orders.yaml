@@ -1,0 +1,131 @@
+post:
+  tags:
+    - Order
+  summary: Create Order
+  operationId: createOrder
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/components/schemas/Order'
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/Order'
+    '401':
+      description: Order creation is not allowed
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to process request
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+
+
+get:
+  tags:
+    - Order
+  summary: Get Order list
+  operationId: getOrderList
+  parameters:
+    - $ref: '#/components/parameters/pageNumberParam'
+    - $ref: '#/components/parameters/pageLimitParam'
+    - $ref: '#/components/parameters/sortingParam'
+    - name: 'filter[date_from]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: time.Time
+    - name: 'filter[date_to]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: time.Time
+    - name: 'filter[price_from]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: float64
+    - name: 'filter[price_to]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: float64
+    - name: 'filter[customer_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: int64
+    - name: 'filter[staff_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: int64
+    - name: 'filter[payment_method]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: int64
+    - name: 'filter[is_take_away]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: bool
+    - name: 'filter[status_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: int64
+    - name: 'filter[cafe_id]'
+      in: query
+      required: false
+      schema:
+        type: string
+        format: int64
+    - name: 'include'
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - statuses
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+              included:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Status'

@@ -1,0 +1,107 @@
+parameters:
+  - name: id
+    in: path
+    description: 'Order identifier'
+    required: true
+    schema:
+      type: string
+      format: int64
+
+get:
+  tags:
+    - Order
+  summary: Get Order
+  description: 'Get order by id'
+  operationId: getOrder
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/Order'
+              included:
+                $ref: '#/components/schemas/Status'
+    '400':
+      description: Invalid request
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '404':
+      description: Order not found
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get order
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+
+put:
+  tags:
+    - Order
+  summary: Update Order
+  description: 'Update order by id'
+  operationId: updateOrder
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Order'
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/Order'
+              included:
+                $ref: '#/components/schemas/Status'
+    '404':
+      description: Invalid order id
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get order or failed to mark order deleted
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+
+
+delete:
+  tags:
+    - Order
+  summary: Delete Order
+  description: 'Delete order by id'
+  operationId: deleteOrder
+  responses:
+    '204':
+      description: Order deleted
+    '404':
+      description: Invalid order id
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get order or failed to mark order deleted
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'

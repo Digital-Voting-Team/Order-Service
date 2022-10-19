@@ -11,7 +11,7 @@ var (
 	    address_id   integer generated always as identity
 	        constraint addresses_pk
 	            primary key,
-	    building_num integer not null,
+	    building_number integer not null,
 	    street       varchar not null,
 	    city         varchar not null,
 	    district     varchar not null,
@@ -24,13 +24,13 @@ var (
 
 	queryDeleteTable = `drop table addresses;`
 
-	queryInsert = `insert into addresses(building_num, street, city, district, region, postal_code)
+	queryInsert = `insert into addresses(building_number, street, city, district, region, postal_code)
 	values ($1, $2, $3, $4, $5, $6) returning address_id;`
 
 	querySelect = `select * from addresses;`
 
 	queryUpdate = `update addresses
-	set building_num=$2, street=$3, city=$4, district=$5, region=$6, postal_code=$7
+	set building_number=$2, street=$3, city=$4, district=$5, region=$6, postal_code=$7
 	where address_id=$1;`
 
 	queryDelete = `delete from addresses

@@ -1,0 +1,107 @@
+parameters:
+  - name: id
+    in: path
+    description: 'Order item identifier'
+    required: true
+    schema:
+      type: string
+      format: int64
+
+get:
+  tags:
+    - OrderItem
+  summary: Get Order Item
+  description: 'Get order item by id'
+  operationId: getOrderItem
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/OrderItem'
+              included:
+                $ref: '#/components/schemas/Order'
+    '400':
+      description: Invalid request
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '404':
+      description: Order item not found
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get order item
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+
+put:
+  tags:
+    - OrderItem
+  summary: Update Order Item
+  description: 'Update order item by id'
+  operationId: updateOrderItem
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/OrderItem'
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/OrderItem'
+              included:
+                $ref: '#/components/schemas/Order'
+    '404':
+      description: Invalid order item id
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get order item or failed to mark order item deleted
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+
+
+delete:
+  tags:
+    - OrderItem
+  summary: Delete Order Item
+  description: 'Delete order item by id'
+  operationId: deleteOrderItem
+  responses:
+    '204':
+      description: Order item deleted
+    '404':
+      description: Invalid order item id
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get order item or failed to mark order item deleted
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'

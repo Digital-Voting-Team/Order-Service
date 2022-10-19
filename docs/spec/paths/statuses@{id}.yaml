@@ -1,0 +1,96 @@
+parameters:
+  - name: id
+    in: path
+    description: 'Status identifier'
+    required: true
+    schema:
+      type: string
+      format: int64
+
+get:
+  tags:
+    - Status
+  summary: Get Status
+  description: 'Get status by id'
+  operationId: getStatus
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/Status'
+    '400':
+      description: Invalid request
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '404':
+      description: Status not found
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get status
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+
+put:
+  tags:
+    - Status
+  summary: Update Status
+  description: 'Update status by id'
+  operationId: updateStatus
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Status'
+  responses:
+    '200':
+      description: Status updated
+    '404':
+      description: Invalid status id
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get status or failed to mark status deleted
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+
+
+delete:
+  tags:
+    - Status
+  summary: Delete Status
+  description: 'Delete status by id'
+  operationId: deleteStatus
+  responses:
+    '204':
+      description: Status deleted
+    '404':
+      description: Invalid status id
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+    '500':
+      description: Failed to get status or failed to mark status deleted
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/Errors'

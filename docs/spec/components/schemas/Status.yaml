@@ -1,0 +1,14 @@
+allOf:
+  - $ref: '#/components/schemas/StatusKey'
+  - type: object
+    required:
+      - attributes
+    properties:
+      attributes:
+        type: object
+        required:
+          - status_name
+        properties:
+          status_name:
+            type: string
+            example: "In progress"
