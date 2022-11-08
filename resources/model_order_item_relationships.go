@@ -5,6 +5,6 @@
 package resources
 
 type OrderItemRelationships struct {
-	Meal  Relation                   `json:"meal"`
-	Order DeliveryRelationshipsOrder `json:"order"`
+	Meal  Relation `json:"meal"`
+	Order Relation `json:"order"`
 }

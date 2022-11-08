@@ -5,8 +5,8 @@
 package resources
 
 type OrderRelationships struct {
-	Cafe     Relation                   `json:"cafe"`
-	Customer Relation                   `json:"customer"`
-	Staff    DeliveryRelationshipsStaff `json:"staff"`
-	Status   Relation                   `json:"status"`
+	Cafe     Relation `json:"cafe"`
+	Customer Relation `json:"customer"`
+	Staff    Relation `json:"staff"`
+	Status   Relation `json:"status"`
 }

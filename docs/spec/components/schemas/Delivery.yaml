@@ -13,6 +13,7 @@ allOf:
           - staff
         properties:
           order:
+            description: "Delivery order fKey"
             type: object
             required:
               - data
@@ -27,6 +28,7 @@ allOf:
               data:
                 $ref: '#/components/schemas/AddressKey'
           staff:
+            description: "Delivery staff fKey"
             type: object
             required:
               - data

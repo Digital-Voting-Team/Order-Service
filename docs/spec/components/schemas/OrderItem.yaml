@@ -12,6 +12,7 @@ allOf:
           - meal
         properties:
           order:
+            description: "OrderItem order fKey"
             type: object
             required:
               - data
