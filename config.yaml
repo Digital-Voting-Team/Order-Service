@@ -13,7 +13,7 @@ listener:
 
 cop:
   disabled: true
-  endpoint: "http://..."
-  upstream: "http://..."
-  service_name: order-service
-  service_port: 80
+#  endpoint: "http://..."
+#  upstream: "http://..."
+#  service_name: order-service
+#  service_port: 80

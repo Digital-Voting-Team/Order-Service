@@ -15,7 +15,7 @@ const orderItemsTableName = "public.order_items"
 func NewOrderItemsQ(db *pgdb.DB) data.OrderItemsQ {
 	return &orderItemsQ{
 		db:        db.Clone(),
-		sql:       sq.Select("orderItems.*").From(orderItemsTableName),
+		sql:       sq.Select("order_items.*").From(orderItemsTableName),
 		sqlUpdate: sq.Update(orderItemsTableName).Suffix("returning *"),
 	}
 }
