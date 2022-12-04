@@ -1,11 +1,11 @@
 package address
 
 import (
-	"Order-Service/internal/data"
-	"Order-Service/internal/service/helpers"
-	requests "Order-Service/internal/service/requests/address"
-	"Order-Service/resources"
 	"net/http"
+	"order-service/internal/data"
+	"order-service/internal/service/helpers"
+	requests "order-service/internal/service/requests/address"
+	"order-service/resources"
 
 	"gitlab.com/distributed_lab/ape"
 	"gitlab.com/distributed_lab/ape/problems"

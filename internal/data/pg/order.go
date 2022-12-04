@@ -1,10 +1,10 @@
 package pg
 
 import (
-	"Order-Service/internal/data"
 	"database/sql"
 	"fmt"
 	"gitlab.com/distributed_lab/kit/pgdb"
+	"order-service/internal/data"
 	"time"
 
 	sq "github.com/Masterminds/squirrel"

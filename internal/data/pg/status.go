@@ -1,9 +1,9 @@
 package pg
 
 import (
-	"Order-Service/internal/data"
 	"database/sql"
 	"gitlab.com/distributed_lab/kit/pgdb"
+	"order-service/internal/data"
 
 	sq "github.com/Masterminds/squirrel"
 	"github.com/fatih/structs"

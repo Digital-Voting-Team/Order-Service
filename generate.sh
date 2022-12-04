@@ -3,8 +3,8 @@
 GENERATOR_IMAGE=registry.gitlab.com/tokend/openapi-go-generator:69f004b58152c83f007b593cc13e94b81d7200da
 
 
-GENERATED="C:\Users\rucla\IdeaProjects\Order-Service\resources"
-OPENAPI_DIR="C:\Users\rucla\IdeaProjects\Order-Service\docs\web_deploy"
+GENERATED="C:\Users\rucla\IdeaProjects\order-service\resources"
+OPENAPI_DIR="C:\Users\rucla\IdeaProjects\order-service\docs\web_deploy"
 PACKAGE_NAME=resources
 
 function printHelp {

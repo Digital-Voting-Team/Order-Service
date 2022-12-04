@@ -1,10 +1,10 @@
 package delivery
 
 import (
-	"Order-Service/internal/service/helpers"
-	requests "Order-Service/internal/service/requests/delivery"
-	"Order-Service/resources"
 	"net/http"
+	"order-service/internal/service/helpers"
+	requests "order-service/internal/service/requests/delivery"
+	"order-service/resources"
 	"strconv"
 
 	"gitlab.com/distributed_lab/ape"

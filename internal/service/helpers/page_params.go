@@ -1,8 +1,8 @@
 package helpers
 
 import (
-	"Order-Service/resources"
 	"net/http"
+	"order-service/resources"
 	"strconv"
 
 	"gitlab.com/distributed_lab/kit/pgdb"

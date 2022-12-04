@@ -1,8 +1,8 @@
 package cli
 
 import (
-	"Order-Service/internal/assets"
-	"Order-Service/internal/config"
+	"order-service/internal/assets"
+	"order-service/internal/config"
 
 	migrate "github.com/rubenv/sql-migrate"
 	"gitlab.com/distributed_lab/logan/v3/errors"

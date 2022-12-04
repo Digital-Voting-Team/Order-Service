@@ -1,22 +1,22 @@
 package service
 
 import (
-	"Order-Service/internal/data/pg"
-	address "Order-Service/internal/service/handlers/address"
-	delivery "Order-Service/internal/service/handlers/delivery"
-	order "Order-Service/internal/service/handlers/order"
-	orderItem "Order-Service/internal/service/handlers/order_item"
-	status "Order-Service/internal/service/handlers/status"
 	"github.com/go-chi/chi"
 	"gitlab.com/distributed_lab/ape"
+	"order-service/internal/data/pg"
+	address "order-service/internal/service/handlers/address"
+	delivery "order-service/internal/service/handlers/delivery"
+	order "order-service/internal/service/handlers/order"
+	orderItem "order-service/internal/service/handlers/order_item"
+	status "order-service/internal/service/handlers/status"
 
-	"Order-Service/internal/service/helpers"
+	"order-service/internal/service/helpers"
 )
 
 func (s *service) router() chi.Router {
 	r := chi.NewRouter()
 	log := s.log.WithFields(map[string]interface{}{
-		"service": "Order-Service",
+		"service": "order-service",
 	})
 
 	r.Use(
@@ -31,7 +31,7 @@ func (s *service) router() chi.Router {
 			helpers.CtxDeliveriesQ(pg.NewDeliveriesQ(s.db)),
 		),
 	)
-	r.Route("/integrations/Order-Service", func(r chi.Router) {
+	r.Route("/integrations/order-service", func(r chi.Router) {
 		r.Route("/statuses", func(r chi.Router) {
 			r.Post("/", status.CreateStatus)
 			r.Get("/", status.GetStatusList)

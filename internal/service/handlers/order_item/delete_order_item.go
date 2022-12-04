@@ -1,9 +1,9 @@
 package order_item
 
 import (
-	"Order-Service/internal/service/helpers"
-	requests "Order-Service/internal/service/requests/order_item"
 	"net/http"
+	"order-service/internal/service/helpers"
+	requests "order-service/internal/service/requests/order_item"
 
 	"gitlab.com/distributed_lab/ape"
 	"gitlab.com/distributed_lab/ape/problems"

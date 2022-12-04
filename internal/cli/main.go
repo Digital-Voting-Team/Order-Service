@@ -1,8 +1,8 @@
 package cli
 
 import (
-	"Order-Service/internal/config"
-	"Order-Service/internal/service"
+	"order-service/internal/config"
+	"order-service/internal/service"
 
 	"github.com/alecthomas/kingpin"
 	"gitlab.com/distributed_lab/kit/kv"

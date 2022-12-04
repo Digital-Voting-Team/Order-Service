@@ -1,12 +1,12 @@
 package order_item
 
 import (
-	"Order-Service/internal/service/helpers"
-	"Order-Service/resources"
 	"encoding/json"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
 	"gitlab.com/distributed_lab/logan/v3/errors"
 	"net/http"
+	"order-service/internal/service/helpers"
+	"order-service/resources"
 
 	"github.com/go-chi/chi"
 	"github.com/spf13/cast"

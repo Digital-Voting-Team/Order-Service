@@ -1,11 +1,11 @@
 package order
 
 import (
-	"Order-Service/internal/data"
-	"Order-Service/internal/service/helpers"
-	requests "Order-Service/internal/service/requests/order"
-	"Order-Service/resources"
 	"net/http"
+	"order-service/internal/data"
+	"order-service/internal/service/helpers"
+	requests "order-service/internal/service/requests/order"
+	"order-service/resources"
 	"strconv"
 
 	"gitlab.com/distributed_lab/ape"

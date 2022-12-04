@@ -13,7 +13,7 @@ services:
       - KV_VIPER_FILE=/config.yaml
     volumes:
       - ./config.yaml:/config.yaml
-    entrypoint: sh -c "Order-Service migrate up && Order-Service run service"
+    entrypoint: sh -c "order-service migrate up && order-service run service"
 
 
   db:

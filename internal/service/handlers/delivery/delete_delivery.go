@@ -1,9 +1,9 @@
 package delivery
 
 import (
-	"Order-Service/internal/service/helpers"
-	requests "Order-Service/internal/service/requests/delivery"
 	"net/http"
+	"order-service/internal/service/helpers"
+	requests "order-service/internal/service/requests/delivery"
 
 	"gitlab.com/distributed_lab/ape"
 	"gitlab.com/distributed_lab/ape/problems"

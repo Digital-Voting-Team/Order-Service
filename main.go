@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Order-Service/internal/cli"
+	"order-service/internal/cli"
 	"os"
 )
 
