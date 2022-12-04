@@ -9,6 +9,7 @@ import (
 	order "order-service/internal/service/handlers/order"
 	orderItem "order-service/internal/service/handlers/order_item"
 	status "order-service/internal/service/handlers/status"
+	"order-service/internal/service/middleware"
 
 	"order-service/internal/service/helpers"
 )
@@ -30,8 +31,10 @@ func (s *service) router() chi.Router {
 			helpers.CtxAddressesQ(pg.NewAddressesQ(s.db)),
 			helpers.CtxDeliveriesQ(pg.NewDeliveriesQ(s.db)),
 		),
+		middleware.BasicAuth(s.endpoints),
 	)
 	r.Route("/integrations/order-service", func(r chi.Router) {
+		r.Use(middleware.CheckManagerPosition())
 		r.Route("/statuses", func(r chi.Router) {
 			r.Post("/", status.CreateStatus)
 			r.Get("/", status.GetStatusList)

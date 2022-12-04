@@ -6,9 +6,9 @@ services:
     build: .
     ports:
       # localhost:docker
-      - "8100:9102"
+      - "9107:9107"
     depends_on:
-      - db
+      - order-db
     environment:
       - KV_VIPER_FILE=/config.yaml
     volumes:
@@ -16,7 +16,7 @@ services:
     entrypoint: sh -c "order-service migrate up && order-service run service"
 
 
-  db:
+  order-db:
     image: postgres
     restart: always
     ports:

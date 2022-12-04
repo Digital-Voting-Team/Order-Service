@@ -6,3 +6,5 @@ info:
 servers:
   - url: 'https://api.demo.tokend.io'
     description: TokenD Developer Environment
+security:
+  - bearerAuth: []
