@@ -20,6 +20,22 @@ endpoints:
       entry_points:
         - "localhost:9102/jwt/user"
         - "staff-service:9102/jwt/user"
+    - service: "menu-service"
+      entry_points:
+        - "localhost:9105/integrations/menu-service/meals/"
+        - "menu-service:9105/integrations/menu-service/meals/"
+    - service: "cafe-service"
+      entry_points:
+        - "localhost:9106/integrations/cafe-service/cafes/"
+        - "cafe-service:9106/integrations/cafe-service/cafes/"
+    - service: "customer-service"
+      entry_points:
+        - "localhost:9101/integrations/customer-service/customers/"
+        - "customer-service:9101/integrations/customer-service/customers/"
+    - service: "staff-service"
+      entry_points:
+        - "localhost:9102/integrations/staff-service/staff/"
+        - "staff-service:9102/integrations/staff-service/staff/"
 
 listener:
   addr: :9107

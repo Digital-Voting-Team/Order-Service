@@ -45,6 +45,7 @@ func BasicAuth(endpointsConf *config.EndpointsConfig) func(next http.Handler) ht
 			}
 			ctx := context.WithValue(r.Context(), "accessLevel", positionResponse.Data.Attributes.AccessLevel)
 			ctx = context.WithValue(ctx, "userId", cast.ToInt64(jwtResponse.Data.Relationships.User.Data.ID))
+			ctx = context.WithValue(ctx, "menuEndpoint", endpointsConf.Endpoints["menu-service"])
 
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})

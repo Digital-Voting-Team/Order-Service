@@ -1,7 +1,16 @@
-# github.com/Digital-Voting-Team/auth-serivce v1.1.0
+# github.com/Digital-Voting-Team/auth-serivce v1.2.2
 ## explicit; go 1.19
 github.com/Digital-Voting-Team/auth-serivce/endpoints
 github.com/Digital-Voting-Team/auth-serivce/resources
+# github.com/Digital-Voting-Team/cafe-service v1.0.2
+## explicit; go 1.19
+github.com/Digital-Voting-Team/cafe-service/resources
+# github.com/Digital-Voting-Team/customer-service v1.0.4
+## explicit; go 1.19
+github.com/Digital-Voting-Team/customer-service/resources
+# github.com/Digital-Voting-Team/menu-service v1.0.1
+## explicit; go 1.19
+github.com/Digital-Voting-Team/menu-service/resources
 # github.com/Digital-Voting-Team/staff-service v1.0.7
 ## explicit; go 1.19
 github.com/Digital-Voting-Team/staff-service/endpoints

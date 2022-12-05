@@ -45,20 +45,20 @@ func (s *service) router() chi.Router {
 			})
 		})
 		r.Route("/orders", func(r chi.Router) {
-			r.Post("/", order.CreateOrder)
+			r.Post("/", order.CreateOrder(s.endpoints))
 			r.Get("/", order.GetOrderList)
 			r.Route("/{id}", func(r chi.Router) {
 				r.Get("/", order.GetOrder)
-				r.Put("/", order.UpdateOrder)
+				r.Put("/", order.UpdateOrder(s.endpoints))
 				r.Delete("/", order.DeleteOrder)
 			})
 		})
 		r.Route("/order_items", func(r chi.Router) {
-			r.Post("/", orderItem.CreateOrderItem)
+			r.Post("/", orderItem.CreateOrderItem(s.endpoints))
 			r.Get("/", orderItem.GetOrderItemList)
 			r.Route("/{id}", func(r chi.Router) {
 				r.Get("/", orderItem.GetOrderItem)
-				r.Put("/", orderItem.UpdateOrderItem)
+				r.Put("/", orderItem.UpdateOrderItem(s.endpoints))
 				r.Delete("/", orderItem.DeleteOrderItem)
 			})
 		})
