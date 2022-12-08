@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"context"
-	authEndoints "github.com/Digital-Voting-Team/auth-serivce/endpoints"
+	authEndoints "github.com/Digital-Voting-Team/auth-service/endpoints"
 	staffEndoints "github.com/Digital-Voting-Team/staff-service/endpoints"
 	"github.com/spf13/cast"
 	"gitlab.com/distributed_lab/ape"
@@ -45,7 +45,6 @@ func BasicAuth(endpointsConf *config.EndpointsConfig) func(next http.Handler) ht
 			}
 			ctx := context.WithValue(r.Context(), "accessLevel", positionResponse.Data.Attributes.AccessLevel)
 			ctx = context.WithValue(ctx, "userId", cast.ToInt64(jwtResponse.Data.Relationships.User.Data.ID))
-			ctx = context.WithValue(ctx, "menuEndpoint", endpointsConf.Endpoints["menu-service"])
 
 			next.ServeHTTP(w, r.WithContext(ctx))
 		})

@@ -48,7 +48,7 @@ func CreateOrder(endpointsConfig *config.EndpointsConfig) func(w http.ResponseWr
 		}
 
 		staffId := cast.ToInt64(request.Data.Relationships.Staff.Data.ID)
-		resultStaff, err := helpers.ValidateStaff(r.Header.Get("Authorization"), endpointsConfig.Endpoints["staff-service"], staffId)
+		resultStaff, err := helpers.ValidateStaff(r.Header.Get("Authorization"), endpointsConfig.Endpoints["staff-id-service"], staffId)
 		if err != nil {
 			helpers.Log(r).WithError(err).Error("failed to get staff from DB")
 			ape.Render(w, problems.InternalError())

@@ -72,11 +72,11 @@ func (s *service) router() chi.Router {
 			})
 		})
 		r.Route("/deliveries", func(r chi.Router) {
-			r.Post("/", delivery.CreateDelivery)
+			r.Post("/", delivery.CreateDelivery(s.endpoints))
 			r.Get("/", delivery.GetDeliveryList)
 			r.Route("/{id}", func(r chi.Router) {
 				r.Get("/", delivery.GetDelivery)
-				r.Put("/", delivery.UpdateDelivery)
+				r.Put("/", delivery.UpdateDelivery(s.endpoints))
 				r.Delete("/", delivery.DeleteDelivery)
 			})
 		})

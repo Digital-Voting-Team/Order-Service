@@ -32,7 +32,7 @@ endpoints:
       entry_points:
         - "localhost:9101/integrations/customer-service/customers/"
         - "customer-service:9101/integrations/customer-service/customers/"
-    - service: "staff-service"
+    - service: "staff-id-service"
       entry_points:
         - "localhost:9102/integrations/staff-service/staff/"
         - "staff-service:9102/integrations/staff-service/staff/"
