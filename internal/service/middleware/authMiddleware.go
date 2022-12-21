@@ -15,6 +15,14 @@ import (
 func BasicAuth(endpointsConf *config.EndpointsConfig) func(next http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if r.Method == "OPTIONS" {
+				w.Header().Set("Access-Control-Allow-Origin", "*")
+				w.Header().Set("Access-Control-Allow-Headers", "*")
+				w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+				w.Header().Set("Access-Control-Max-Age", "300")
+				w.WriteHeader(204)
+				return
+			}
 			jwtResponse, err := authEndoints.ValidateToken(
 				r.Header.Get("Authorization"),
 				endpointsConf.Endpoints["auth-service"],

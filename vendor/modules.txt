@@ -2,13 +2,13 @@
 ## explicit; go 1.19
 github.com/Digital-Voting-Team/auth-service/endpoints
 github.com/Digital-Voting-Team/auth-service/resources
-# github.com/Digital-Voting-Team/cafe-service v1.0.4
+# github.com/Digital-Voting-Team/cafe-service v1.0.9
 ## explicit; go 1.19
 github.com/Digital-Voting-Team/cafe-service/resources
 # github.com/Digital-Voting-Team/customer-service v1.0.6
 ## explicit; go 1.19
 github.com/Digital-Voting-Team/customer-service/resources
-# github.com/Digital-Voting-Team/menu-service v1.0.3
+# github.com/Digital-Voting-Team/menu-service v1.0.5
 ## explicit; go 1.19
 github.com/Digital-Voting-Team/menu-service/resources
 # github.com/Digital-Voting-Team/staff-service v1.1.0
@@ -70,6 +70,9 @@ github.com/getsentry/sentry-go/internal/ratelimit
 ## explicit
 github.com/go-chi/chi
 github.com/go-chi/chi/middleware
+# github.com/go-chi/cors v1.2.1
+## explicit; go 1.14
+github.com/go-chi/cors
 # github.com/go-gorp/gorp/v3 v3.1.0
 ## explicit; go 1.18
 github.com/go-gorp/gorp/v3
